@@ -12,7 +12,7 @@ class DefaultController extends AbstractController
 {
 
     /**
-     * @Route("/templates/", name="app_index")
+     * @Route("/", name="app_index")
      */
     public function index(): Response
     {
