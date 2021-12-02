@@ -1,21 +1,29 @@
+{% extends 'base.html.twig' %}
 
-{% block title %}All programs{% endblock %}
+{% block title %}
+	<div>Season
+		{{ season.number }}</div>
+{% endblock %}
 
 {% block body %}
-<div class="media">
-        <img class="align-self-start mr-3" src="{{ program.poster }}" alt="{{ program.title }} poster">
-        <div class="media-body">
-            <h1 class="mt-0">{{ program.title }}</h1>
-            <p>{{ program.summary }}</p>
-            <p>Catégorie : {{ program.category.name }}</p>
-            <p>{{ program.title }}</p>
-            <p>Saison :{{ season.number }}</p>
-            <p>{{ season.year }}</p>
-            <p>{{ season.description }}</p>
-            {% for episode in season.episodes %}
-            <p>{{ episode.title }}</p>
-            <p>{{ episode.number }}</p>
-            <p>{{ episode.synopsis }}</p>
-            {% endfor %}
-	<a href="{{ path('app_index') }}">Retour à l'accueil</a>
-{% endblock %}
+	<div class="media ms-5 me-5">
+		<h1 class="mt-5 d-flex justify-content-center">{{ program.title }}</h1>
+		<p class="d-flex justify-content-center">Catégorie : {{ program.category.name }}</p>
+        <p class="d-flex justify-content-center">Année {{ season.year }}</p>
+		<div class="media-body">
+			<div class="d-flex">
+				<img class="align-self-start mr-3 mb-5" src="{{ program.poster }}" alt="{{ program.title }} poster">
+				<p class="align-self-center">{{ program.summary }}</p>
+			</div>
+			
+			<p class="fs-5 fw-bold">{{ season.description }}</p>
+			{% for episode in season.episodes %}
+				<div class="bg-secondary">
+					<div class="episode mt-5 text-uppercase text-decoration-underline">{{ episode.title }}</div>
+					<p class="fw-bold mt-3">Épisode
+						{{ episode.number }}</p>
+					<p>{{ episode.synopsis }}</p>
+				</div>
+			{% endfor %}
+			<a href="{{ path('program_index') }}">Retour à la liste des programmes</a>
+		{% endblock %}
