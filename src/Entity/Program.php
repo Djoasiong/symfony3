@@ -41,16 +41,6 @@ class Program
     private $category;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $synopsis;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $country;
-
-    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $year;
@@ -114,30 +104,6 @@ class Program
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
-
-        return $this;
-    }
-
-    public function getSynopsis(): ?string
-    {
-        return $this->synopsis;
-    }
-
-    public function setSynopsis(string $synopsis): self
-    {
-        $this->synopsis = $synopsis;
-
-        return $this;
-    }
-
-    public function getCountry(): ?string
-    {
-        return $this->country;
-    }
-
-    public function setCountry(?string $country): self
-    {
-        $this->country = $country;
 
         return $this;
     }
