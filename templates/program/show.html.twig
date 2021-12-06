@@ -15,14 +15,31 @@
 				<p class="align-self-center">{{ program.summary }}</p>
 			</div>
 			{% for season in seasons %}
-				<p class="fs-3">Saison
-					{{ season.number }}</p>
-				<p>Année :
-					{{ season.year }}</p>
-				<p>{{ season.description }}</p>
-				<a href="{{ path('program_season_show',{programId: season.program.id, seasonId: season.id }) }}">Voir la fiche</a>
+				<div class="card-group" style="width: 18rem;">
+					<div class="card d-flex">
+						<div class="card-body">
+							<h2 class="card-title fs-3">Saison
+								{{ season.number }}</h2>
+							<p class="card-text">Année :
+								{{ season.year }}</p>
+							<p class="card-text">{{ season.description }}</p>
+							<a href="{{ path('program_season_show',{programId: season.program.id, seasonId: season.id }) }}">Voir la fiche</a>
+						</div>
+					</div>
+				</div>
 			{% endfor %}
+			<a href="{{ path('program_index') }}">Retour à la liste des programmes</a>
 		</div>
-	</div>
-	<a href="{{ path('program_index') }}">Retour à la liste des programmes</a>
-{% endblock %}
+		<strong>Acteurs :</strong>
+		<ul>
+			{% for actor in program.actors %}
+				<h4 href="{{ path('actor_show', { id: actor.id }) }}">{{ loop.index }}
+					-
+					{{ actor.name }}</h4>
+				<li>{{ actor.name }}
+				</li>
+			{% else %}
+				<li>Aucun acteur pour cette série</li>
+			{% endfor %}
+		</ul>
+	{% endblock %}
