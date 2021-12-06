@@ -20,8 +20,6 @@ final class Version20211202224904 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE episode ADD CONSTRAINT FK_DDAA1CDA4EC001D1 FOREIGN KEY (season_id) REFERENCES season (id)');
-        $this->addSql('CREATE INDEX IDX_DDAA1CDA4EC001D1 ON episode (season_id)');
         $this->addSql('ALTER TABLE program ADD synopsis VARCHAR(255) DEFAULT NULL, ADD country VARCHAR(255) DEFAULT NULL, CHANGE year year INT DEFAULT NULL');
         $this->addSql('ALTER TABLE season CHANGE program_id program_id INT DEFAULT NULL');
         $this->addSql('ALTER TABLE season ADD CONSTRAINT FK_F0E45BA93EB8070A FOREIGN KEY (program_id) REFERENCES program (id)');
@@ -31,8 +29,6 @@ final class Version20211202224904 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE episode DROP FOREIGN KEY FK_DDAA1CDA4EC001D1');
-        $this->addSql('DROP INDEX IDX_DDAA1CDA4EC001D1 ON episode');
         $this->addSql('ALTER TABLE program DROP synopsis, DROP country, CHANGE year year INT NOT NULL');
         $this->addSql('ALTER TABLE season DROP FOREIGN KEY FK_F0E45BA93EB8070A');
         $this->addSql('DROP INDEX IDX_F0E45BA93EB8070A ON season');

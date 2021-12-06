@@ -1,17 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}All programs{% endblock %}
+{% block title %}All programs
+{% endblock %}
 
 {% block body %}
-	<h1 class="ms-5 mt-5 mb-3">Toutes les séries de la table program :</h1>
-	{% for program in programs %}
-		<div class="ms-5">
-			<h2>{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
-			<p>{{ program.summary }}</p>
-			{# Lien vers la fiche de la série : #}
-			<a href="{{ path("program_show", { id: program.id }) }}">Voir la fiche</a>
+	<main class="container mt-5">
+		<div class=" mb-3">
+			<h1 class=" series mb-3 d-flex justify-content-center">Toutes les séries</h1>
+				<a class="btn btn-secondary d-flex justify-content-center" href="{{ path('program_new') }}">Ajouter un programme</a>
+					{% for program in programs %}
+						<div class="row g-0 p-4">
+							<div class="col-md-4">
+								<img src="{{ program.poster }}" class="image img-fluid rounded-start mt-5" alt="{{ program.title }}">
+							</div>
+							<div class="col-md-8 align-self-center">
+								<div class="card-body">
+									<h2 class="d-flex justify-content-center">{{ program.title }}</h2>
+									<p class="d-flex justify-content-center">Catégorie : {{ program.category.name }}</p>
+								</div>
+								<p>{{ program.summary }}</p>
+								<a class="btn text-light" href="{{ path("program_show", { id: program.id }) }}">Voir la fiche</a>
+							</div>
+						</div>
+					</div>
+					{% else %}Aucune série trouvée.
+				{% endfor %}
 		</div>
-		{% else %}Aucune série trouvée.
-	{% endfor %}
-	<a href="{{ path('app_index') }}"class="ms-5">Retour à l'accueil</a>
+	</main>
 {% endblock %}

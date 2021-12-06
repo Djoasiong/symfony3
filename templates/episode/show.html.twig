@@ -3,8 +3,8 @@
 {% block title %}Episode{% endblock %}
 
 {% block body %}
-    <h1>Episode</h1>
-
+    <h1 class="d-flex justify-content-center mt-5 mb-5">Episode</h1>
+<main class="container">
     <table class="table">
         <tbody>
             <tr>
@@ -26,9 +26,10 @@
         </tbody>
     </table>
 
-    <a href="{{ path('episode_index') }}">back to list</a>
+    <a class="btn text-light" href="{{ path('episode_index') }}">< Retour à la liste d'épisodes</a>
 
     <a href="{{ path('episode_edit', {'id': episode.id}) }}">edit</a>
 
     {{ include('episode/_delete_form.html.twig') }}
+    </main>
 {% endblock %}

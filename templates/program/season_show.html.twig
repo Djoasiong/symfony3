@@ -6,24 +6,29 @@
 {% endblock %}
 
 {% block body %}
-	<div class="media ms-5 me-5">
-		<h1 class="mt-5 d-flex justify-content-center">{{ program.title }}</h1>
-		<p class="d-flex justify-content-center">Catégorie : {{ program.category.name }}</p>
-        <p class="d-flex justify-content-center">Année {{ season.year }}</p>
-		<div class="media-body">
-			<div class="d-flex">
-				<img class="align-self-start mr-3 mb-5" src="{{ program.poster }}" alt="{{ program.title }} poster">
+<main class="container mt-5">
+	<div class="row g-0 p-4">
+		<div class="col-md-4">
+			<img class="image img-fluid rounded-start mt-5 mb-5" src="{{ program.poster }}" alt="{{ program.title }} poster">
+		</div>
+		<div class="col-md-8 align-self-center">
+			<div class="card-body">
+				<h1 class="d-flex justify-content-center">{{ program.title }}</h1>
+				<p class="d-flex justify-content-center">Catégorie :
+					{{ program.category.name }}</p>
+				<p class="d-flex justify-content-center">Année
+					{{ season.year }}</p>
 				<p class="align-self-center">{{ program.summary }}</p>
 			</div>
-			
-			<p class="fs-5 fw-bold">{{ season.description }}</p>
-			{% for episode in season.episodes %}
-				<div class="bg-secondary">
-					<div class="episode mt-5 text-uppercase text-decoration-underline">{{ episode.title }}</div>
-					<p class="fw-bold mt-3">Épisode
-						{{ episode.number }}</p>
-					<p>{{ episode.synopsis }}</p>
-				</div>
-			{% endfor %}
-			<a href="{{ path('program_index') }}">Retour à la liste des programmes</a>
-		{% endblock %}
+		</div>
+	</div>
+	<p class="fs-5">{{ season.description }}</p>
+	{% for episode in season.episodes %}
+		<div class="episode mt-5 text-uppercase text-decoration-underline">{{ episode.title }}</div>
+		<p class="fw-bold mt-3">Épisode
+			{{ episode.number }}</p>
+		<p>{{ episode.synopsis }}</p>
+	{% endfor %}
+	<a class="btn text-light mb-5" href="{{ path('program_index') }}">< Retour à la liste des programmes</a> 
+</main> 
+{% endblock %}
