@@ -2,10 +2,63 @@
 $primary: #70747C;
 $secondary: #CB8368;
 $dark: #140D0B;
+$blue: #648F90;
+$redcolor: #6C3226;
+$size-secondary: 24px;
+$size-primary: 50px;
 
 @import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Germania+One');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;600&family=Philosopher&display=swap');
 
-.img {
-    width: 200px;
-    height: 300px;
+.image {
+    width: 300px;
+    height: 400px;
+}
+
+body {
+    background-color: $blue;
+}
+
+.container {
+    margin-top: 100px;
+}
+
+.nav, h1, h2{
+    font-family: 'Germania One';
+}
+
+.navbar-collapse {
+    font-size: $size-secondary;
+}
+
+h1 {
+    font-size: $size-primary;
+}
+
+p {
+    font-family: 'Philosopher', sans-serif;
+}
+
+.btn {
+    text-decoration: none;
+}
+
+.edit, .show {
+    width: 100px;
+}
+
+.index {
+    width: 400px;
+}
+
+.ban {
+    height: 500px;
+    background-image: url(https://image.shutterstock.com/image-vector/scary-banners-posters-set-horror-600w-1178517100.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.series {
+    margin-top: 100px;
 }

@@ -13,7 +13,7 @@ use App\Entity\Program;
 use App\Entity\Season;
 use App\Entity\Episode;
 use App\Form\ProgramType;
-use App\Entity\Actor;
+
 
 
 /**
@@ -77,19 +77,8 @@ class ProgramController extends AbstractController
      */
     public function show(Program $program): Response
     {
-        $seasons = $this->getDoctrine()
-        ->getRepository(Season::class)
-        ->findBy(['program' => $program], ['number' => 'ASC']);
-    
-        if (!$seasons) {
-            throw $this->createNotFoundException(
-                'Not program found'
-            );
-        }
-    
         return $this->render('program/show.html.twig', [
             'program' => $program,
-            'seasons' => $seasons,
         ]);
     }
 

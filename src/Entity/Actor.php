@@ -25,6 +25,11 @@ class Actor
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
+    /**
      * @ORM\ManyToMany(targetEntity=Program::class, inversedBy="actors")
      */
     private $programs;
@@ -51,6 +56,18 @@ class Actor
         return $this;
     }
 
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Program[]
      */
@@ -73,5 +90,10 @@ class Actor
         $this->programs->removeElement($program);
 
         return $this;
+    }
+
+    public function getSelector(): string
+    {
+        return $this->getId() . ' - ' . $this->getName();
     }
 }

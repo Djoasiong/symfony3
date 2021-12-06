@@ -1,14 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}All actors{% endblock %}
+{% block title %}All actors
+{% endblock %}
 
 {% block body %}
-	<h1>Tous les acteurs:</h1>
-	{% for actor in actors %}
-		<div>
-			<h2>{{ loop.index }} / {{ actor.name }}<a href= "{{ path("actor_show", { id: actor.id }) }}">{{ actor.name }}</a></h2>
-		</div>
-		{% else %}Aucun acteur trouvé.
-	{% endfor %}
-	<a href="{{ path('program_index') }}">Retour aux programmes</a>
+	<main class="container">
+	<h1 class="d-flex justify-content-center mt-5 mb-5">Tous les acteurs</h1>
+		{% for actor in actors %}
+			<div class="row">
+				<div class="col-md-4">
+					<img src="{{ actor.image }}" class="image img-fluid rounded-start mt-5" alt="{{ actor.image }}">
+				</div>
+				<div class="col-md-8 align-self-center">
+					<div class="card-body">
+						<h2>{{ actor.name }}</h2>
+						<div>
+							<a class="text-light" href="{{ path("actor_show", { id: actor.id }) }}">{{ actor.name }}</a>
+						</div>
+					</div>
+				</div>
+			</div>
+				{% else %}Aucun acteur trouvé.
+		{% endfor %}
+	</main>
 {% endblock %}

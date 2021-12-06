@@ -4,42 +4,40 @@
 {% endblock %}
 
 {% block body %}
-
-	<div class="media ms-5 me-5">
-		<h1 class="mt-5 d-flex justify-content-center">{{ program.title }}</h1>
-		<p class="d-flex justify-content-center">Catégorie :
-			{{ program.category.name }}</p>
-		<div class="media-body">
-			<div class="d-flex">
-				<img class="align-self-start mr-3 mb-5" src="{{ program.poster }}" alt="{{ program.title }} poster">
-				<p class="align-self-center">{{ program.summary }}</p>
-			</div>
-			{% for season in seasons %}
-				<div class="card-group" style="width: 18rem;">
-					<div class="card d-flex">
-						<div class="card-body">
-							<h2 class="card-title fs-3">Saison
-								{{ season.number }}</h2>
-							<p class="card-text">Année :
-								{{ season.year }}</p>
-							<p class="card-text">{{ season.description }}</p>
-							<a href="{{ path('program_season_show',{programId: season.program.id, seasonId: season.id }) }}">Voir la fiche</a>
-						</div>
+	<main class="container">
+		<div class=" mt-5">
+			<div class="row g-0 p-4">
+				<div class="col-md-4">
+					<img class=" image align-self-start mr-3 mb-5 mt-5" src="{{ program.poster }}" alt="{{ program.title }} poster">
+				</div>
+				<div class="col-md-8 align-self-center">
+					<div class="card-body">
+						<h1 class="d-flex justify-content-center">{{ program.title }}</h1>
+						<p class="d-flex justify-content-center">Catégorie :
+							{{ program.category.name }}</p>
+						<p>{{ program.summary }}</p>
 					</div>
 				</div>
-			{% endfor %}
-			<a href="{{ path('program_index') }}">Retour à la liste des programmes</a>
+				{% for season in program.seasons %}
+					<div class="card-group" style="width: 20rem;">
+						<h2 class="card-title fs-3">Saison
+							{{ season.number }}
+							- Année
+							{{ season.year }}</h2>
+						<p class="card-text">{{ season.description }}</p>
+						<a class="btn text-light" href="{{ path('program_season_show',{programId: season.program.id, seasonId: season.id }) }}">Voir la fiche</a>
+					</div>
+				{% endfor %}
+			</div>
 		</div>
 		<strong>Acteurs :</strong>
 		<ul>
 			{% for actor in program.actors %}
-				<h4 href="{{ path('actor_show', { id: actor.id }) }}">{{ loop.index }}
-					-
-					{{ actor.name }}</h4>
-				<li>{{ actor.name }}
-				</li>
+				<h3 href="{{ path('actor_show', { id: actor.id }) }}">{{ loop.index }} - {{ actor.name }}</h3>
 			{% else %}
 				<li>Aucun acteur pour cette série</li>
 			{% endfor %}
 		</ul>
-	{% endblock %}
+		<a class="btn text-light mb-5" href="{{ path('program_index') }}">< Retour à la liste des programmes</a>
+	</main>
+{% endblock %}
