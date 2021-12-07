@@ -14,6 +14,7 @@ class CategoryFixtures extends Fixture
         'Animation',
         'Fantastique',
         'Horreur',
+        'Science fiction',
     ];
     public function load(ObjectManager $manager)
     {
@@ -21,7 +22,8 @@ class CategoryFixtures extends Fixture
 
             $category = new Category();  
             $category->setName($categoryName);  
-            $manager->persist($category);  
+            $manager->persist($category);
+            $this->addReference('category_' . $key, $category); 
         }  
         $manager->flush();
     }
