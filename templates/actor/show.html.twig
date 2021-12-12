@@ -11,7 +11,7 @@
 			<div class="card-body">
 				<img class=" image align-self-start mr-3 mb-2" src="{{ program.poster }}" alt="{{ program.title }} poster">
 				<div>
-					<a class="btn btn-secondary " href="{{ path("program_show", { id: program.id }) }}">{{ program.title }}</a>
+					<a class="btn btn-secondary " href="{{ path("program_show", { slug: program.slug }) }}">{{ program.title }}</a>
 				</div>
 			</div>
 		{% endfor %}

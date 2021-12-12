@@ -25,7 +25,7 @@
 							- Année
 							{{ season.year }}</h2>
 						<p class="card-text">{{ season.description }}</p>
-						<a class="btn text-light" href="{{ path('program_season_show',{programId: season.program.id, seasonId: season.id }) }}">Voir la fiche</a>
+						<a class="btn text-light" href="{{ path('program_season_show',{ programId: season.program.id, seasonId: season.id }) }}">Voir la fiche</a>
 					</div>
 				{% endfor %}
 			</div>
