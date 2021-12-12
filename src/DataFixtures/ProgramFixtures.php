@@ -2,14 +2,17 @@
 
 namespace App\DataFixtures;
 
+use App\Service\Slugify;
 use App\Entity\Program;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 
 class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
+
     const PROGRAMS = [
         [
             'title' => 'Walking dead',
@@ -52,6 +55,13 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
         ],
 
     ];
+
+    private $slugify;
+
+    public function __construct(Slugify $slugify)
+    {
+        $this->slugify = $slugify;
+    }
     public function load(ObjectManager $manager)
     {
         foreach (self::PROGRAMS as $key => $show) {
@@ -64,6 +74,9 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             for ($i = 0; $i < count(ActorFixtures::ACTORS); $i++) {
                 $program->addActor($this->getReference('actor_' . $i));
             }
+
+            $slug = $this->slugify->generate($program->getTitle());
+            $program->setSlug($slug);
 
             $manager->persist($program);
             $this->addReference('program_' . $key, $program);
