@@ -27,8 +27,8 @@
 		<div class="episode mt-5 text-uppercase text-decoration-underline">{{ episode.title }}</div>
 		<p class="fw-bold mt-3">Épisode
 			{{ episode.number }}</p>
-		<p>{{ episode.synopsis }}</p>
+		<p>{{ episode.synopsis[:100]|raw }}</p>
+    <a href="{{ path('program_episode_show',{ programId: program.id, seasonId: season.id, episodeId: episode.id }) }}"> en savoir plus </a>
 	{% endfor %}
-	<a class="btn text-light mb-5" href="{{ path('program_index') }}">< Retour à la liste des programmes</a> 
-</main> 
-{% endblock %}
+	<a class="btn text-light mb-5" href="{{ path('program_index') }}">
+		<Retour à la liste des programmes</a> </main> {% endblock %}

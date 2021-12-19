@@ -16,6 +16,9 @@ use App\Form\ProgramType;
 use App\Service\Slugify;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+use App\Entity\Comment;
+use App\Form\CommentType;
+use DateTime;
 
 
 
@@ -105,18 +108,34 @@ class ProgramController extends AbstractController
     /**
     * getting a program by seasonId
     *
-    * @Route("/{programId}/season/{seasonId}/episode/{episodeSlug}", name="episode_show")
+    * @Route("/{programId}/season/{seasonId}/episode/{episodeId}", name="episode_show")
     * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"programId": "id"}})
     * @ParamConverter("season", class="App\Entity\Season", options={"mapping": {"seasonId": "id"}})
     * @ParamConverter("episode", class="App\Entity\Episode", options={"mapping": {"episodeId": "id"}})
     * @return Response
     */
-    public function showEpisode(Program $program, Season $season, Episode $episode)
+    public function showEpisode(Program $program, Season $season, Episode $episode, Request $request)
     {
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $comment->setEpisode($episode);
+            $comment->setAuthor($this->getUser());
+            $now = new DateTime('now');
+            $comment->setDate($now);
+            $entityManager->persist($comment);
+            $entityManager->flush();
+
+        }
+
         return $this->render('program/episode_show.html.twig', [
             'program' => $program,
             'season' => $season,
             'episode' => $episode,
+            'form' => $form->createView(),
         ]);
     }
 }
