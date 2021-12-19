@@ -3,11 +3,15 @@
 {% block title %} Category {{ name }}{% endblock %}
 
 {% block body %}
+<main class="container">
         {% for program in programs %}
-            <p>{{ program.title }}</p>
-            <p>{{ program.id }}</p>
-            <p>{{ program.summary }}</p>
+            <div>
+            <img class=" image align-self-start mr-3 mb-5 mt-5" src="{{ program.poster }}" alt="{{ program.title }} poster">
+                <p>{{ program.title }}</p>
+                <p>{{ program.id }}</p>
+                <p>{{ program.summary }}</p>
+            </div>
             <a href="{{ path("program_show", { slug: program.slug }) }}">Voir la fiche</a>
     {% endfor %}
-    <a href="{{ path('category_index') }}">Retour à la liste des catégories</a>
+    </main>
 {% endblock %}

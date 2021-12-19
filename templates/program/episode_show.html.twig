@@ -7,8 +7,25 @@
 {% block body %}
 	<ul>
 		<li>{{ episode.title }}</li>
-		<li>Épisode {{ episode.number }}</li>
+		<li>Épisode
+			{{ episode.number }}</li>
 		<li>{{ episode.synopsis }}</li>
 	</ul>
+	{% if is_granted('ROLE_CONTRIBUTOR') %}
+		<div>
+			{{ form_start(form) }}
+			{{ form_widget(form) }}
+			<button class="btn">{{ button_label|default('Save') }}</button>
+			{{ form_end(form) }}
+		</div>
+	{% endif %}
+
+	{% for comment in episode.comments %}
+	<div>
+	<p class="fw-3">{{ comment.author.email }}</p>
+	avis: {{ comment.comment }} - note: {{ comment.rate }} * - ({{ comment.date|date('Y/m/d H:i:s')}})
+	</div>
+	{% endfor %}
+
 	<a href="{{ path('app_index') }}">Retour à l'accueil</a>
 {% endblock %}

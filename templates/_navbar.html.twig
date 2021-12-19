@@ -25,5 +25,16 @@
 				</div>
 			</ul>
 		</div>
+		<div>
+			{% if app.user %}
+				{{ app.user.email }}
+				<a href="{{ path('app_logout') }}">
+					Se déconnecter</a>
+			{% else %}
+				<a href="{{ path('login') }}">
+					Se connecter</a>
+			{% endif %}
+		</div>
 	</div>
 </nav>
+<div class="back-nav"></div>
