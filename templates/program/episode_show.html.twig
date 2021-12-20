@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Saison
-	{{ season.number }}
+{% block title %}Episode
+	{{ episode.number }}
 {% endblock %}
 
 {% block body %}
@@ -11,6 +11,7 @@
 			{{ episode.number }}</li>
 		<li>{{ episode.synopsis }}</li>
 	</ul>
+
 	{% if is_granted('ROLE_CONTRIBUTOR') %}
 		<div>
 			{{ form_start(form) }}
@@ -20,12 +21,24 @@
 		</div>
 	{% endif %}
 
-	{% for comment in episode.comments %}
-	<div>
-	<p class="fw-3">{{ comment.author.email }}</p>
-	avis: {{ comment.comment }} - note: {{ comment.rate }} * - ({{ comment.date|date('Y/m/d H:i:s')}})
-	</div>
-	{% endfor %}
+	{% if is_granted("ROLE_ADMIN") %}
+		<a href="{{ path('program_edit', { 'slug': program.slug} ) }}">Éditer</a>
+	{%endif%}
 
-	<a href="{{ path('app_index') }}">Retour à l'accueil</a>
-{% endblock %}
+		{% for comment in episode.comments %}
+			<div>
+				<p class="fw-3">{{ comment.author.email }}</p>
+				avis:
+				{{ comment.comment }}
+				- note:
+				{{ comment.rate }}
+				* - ({{ comment.date|date('Y/m/d H:i:s')}})
+
+				{% if is_granted("ROLE_ADMIN") or app.user is same as(comment.author) %}
+       			{% include "/comment/_delete_form.html.twig" %}
+        		{% endif %}
+			</div>
+		{% endfor %}
+
+		<a href="{{ path('app_index') }}">Retour à l'accueil</a>
+	{% endblock %}

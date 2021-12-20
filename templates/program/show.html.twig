@@ -27,6 +27,8 @@
 						<p class="card-text">{{ season.description }}</p>
 						<a class="btn text-light" href="{{ path('program_season_show',{ programId: season.program.id, seasonId: season.id }) }}">Voir la fiche</a>
 					</div>
+					{% else %}
+					Pas de saison disponible
 				{% endfor %}
 			</div>
 		</div>

@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}New Comment{% endblock %}
+
+{% block body %}
+	<main class="container">
+	<h1 class="d-flex justify-content-center mb-5 bg-secondary">Créer un nouveau commentaire</h1>
+		{{ include('comment/_form.html.twig') }}
+        <a class="btn text-light mb-5 mt-5" href="{{ path('comment_index') }}">< Retour aux commentaires</a>
+	</main>
+{% endblock %}
