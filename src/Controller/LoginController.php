@@ -22,5 +22,13 @@ class LoginController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @Route("/my_profile", name="profile")
+     */
+    public function profile()
+    {
+        return $this->render('login/profile.html.twig');
+    }
     
 }
