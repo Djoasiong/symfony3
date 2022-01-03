@@ -22,7 +22,8 @@ class ActorRepository extends ServiceEntityRepository
     // /**
     //  * @return Actor[] Returns an array of Actor objects
     //  */
-    /*
+
+/*
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('a')
