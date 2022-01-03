@@ -26,11 +26,12 @@
 								</div>
 								<p>{{ program.summary }}</p>
 								<a class="btn text-light" href="{{ path("program_show", { slug:program.slug }) }}">Voir la fiche</a>
+								<a href="{{ path('program_delete', { slug: program.slug} ) }}">Supprimer</a>
 							</div>
 						</div>
-					</div>
-					{% else %}Aucune série trouvée.
-				{% endfor %}
+							<a href="{{ path('program_edit', { slug: program.slug} ) }}">Éditer</a>
+						{% else %}Aucune série trouvée.
+					{% endfor %}
 		</div>
 	</main>
 {% endblock %}

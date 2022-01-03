@@ -78,6 +78,9 @@ class ProgramController extends AbstractController
             ->html($this->renderView('program/newProgramEmail.html.twig', ['program' => $program]));
 
         $mailer->send($email);
+
+        $this->addFlash('success', 'La nouvelle série a bien été créée');
+
             return $this->redirectToRoute('program_index');
         }
 
@@ -163,6 +166,8 @@ class ProgramController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
+            $this->addFlash('success', 'La série a bien été modifiée');
+
             return $this->redirectToRoute('program_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -170,5 +175,20 @@ class ProgramController extends AbstractController
             'program' => $program,
             'form' => $form,
         ]);
+    }
+
+    /**
+     * @Route("/{slug}/delete", name="delete", methods={"GET", "POST"})
+     */
+    public function delete(Request $request, Program $program, EntityManagerInterface $entityManager): Response
+    {
+
+        if ($this->isCsrfTokenValid('delete' . $program->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($program);
+            $entityManager->flush();
+        }
+        $this->addFlash('danger', 'La série a bien été supprimée');
+
+        return $this->redirectToRoute('program_index', [], Response::HTTP_SEE_OTHER);
     }
 }
