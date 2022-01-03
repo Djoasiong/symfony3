@@ -98,6 +98,7 @@ class CategoryController extends AbstractController
                 );
             }
 
+            
         return $this->render('/category/show.html.twig', [
             'name' => $categoryName,
             'programs' => $programs,
