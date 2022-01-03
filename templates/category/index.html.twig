@@ -3,13 +3,13 @@
 {% block title %}All categories{% endblock %}
 
 {% block body %}
-<main class="container">
-<div class=" mb-3">
-	<h1 class="d-flex justify-content-center mt-5 mb-3">Toutes les catégories </h1>
+<main class="container mb-5">
+<div>
+	<h1 class="d-flex justify-content-center mt-5 mb-5">Toutes les catégories </h1>
 	<a class="btn btn-secondary d-flex justify-content-center mb-5"href="{{ path('category_new') }}">Ajouter une catégorie</a>
 	{% for category in categories %}
 		<div>
-			<h2>{{ loop.index }} / <a href= "{{ path("category_show", { categoryName:category.name  }) }}">{{ category.name }}</a></h2>
+			<h2 class="mb-5">{{ loop.index }} / <a href= "{{ path("category_show", { categoryName:category.name  }) }}">{{ category.name }}</a></h2>
 		</div>
 		{% else %}Aucune catégorie trouvée.
 	{% endfor %}

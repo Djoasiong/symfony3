@@ -7,6 +7,12 @@
 	<main class="container mt-5">
 		<div class=" mb-3">
 			<h1 class=" series mb-3 d-flex justify-content-center">Toutes les séries</h1>
+				<div class="mb-5">
+					{{ form_start(form) }}
+					{{ form_widget(form) }}
+					<button class="mt-3">Search</button>
+					{{ form_end(form) }}
+				</div>
 				<a class="btn btn-secondary d-flex justify-content-center" href="{{ path('program_new') }}">Ajouter un programme</a>
 					{% for program in programs %}
 						<div class="row g-0 p-4">
