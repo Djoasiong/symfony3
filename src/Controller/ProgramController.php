@@ -191,4 +191,19 @@ class ProgramController extends AbstractController
 
         return $this->redirectToRoute('program_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    /**
+     * @route("/{id}/watchlist", name="watchlist", methods={"GET", "POST"})
+     */
+    public function addToWatchlist(Program $program, EntityManagerInterface $entityManager): response
+    {
+        if ($this->getUser()->isInWatchlist($program)) {
+            $this->getUser()->removeFromWatchlist($program);
+        } else {
+        $this->getUser()->addToWatchlist($program);
+        }
+        $entityManager->flush();
+
+        return $this->redirectToRoute('program_show', ['slug' => $program->getSlug()]);
+    }
 }
