@@ -3,17 +3,23 @@
 namespace App\Entity;
 
 use App\Repository\ProgramRepository;
+use DateTime;
+use DateTimeImmutable;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass=ProgramRepository::class)
  * @UniqueEntity(fields="title", message="ce titre existe déjà")
  * @ORM\Entity
  * @UniqueEntity("slug")
+ * @Vich\Uploadable
  */
 class Program
 {
@@ -25,10 +31,10 @@ class Program
     private $id;
 
     /**
-    * @ORM\Column(type="string", length=255, unique=true)
-    * @Assert\NotBlank(message="ne me laisse pas tout vide")
-    * @Assert\Length(max="255")
-    */
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank(message="ne me laisse pas tout vide")
+     * @Assert\Length(max="255")
+     */
     private $title;
 
     /**
@@ -45,6 +51,16 @@ class Program
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $poster;
+
+    /**
+     * @Vich\UploadableField(mapping="poster_file", fileNameProperty="poster")
+     * @var File
+     * @Assert\File(
+     * maxSize = "1M",
+     * mimeTypes = {"image/jpeg", "image/png", "image/jpg"},
+     * )
+     */
+    private $posterFile;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="programs")
@@ -83,11 +99,18 @@ class Program
      */
     private $users;
 
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTimeInterface|null
+     */
+    private ?DateTimeInterface $updatedAt;
+
     public function __construct()
     {
         $this->seasons = new ArrayCollection();
         $this->actors = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->updatedAt = new DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -248,7 +271,7 @@ class Program
     {
         if (!$this->users->contains($user)) {
             $this->users[] = $user;
-            $user->addWatchlist($this);
+            $user->addToWatchlist($this);
         }
 
         return $this;
@@ -257,9 +280,27 @@ class Program
     public function removeUser(User $user): self
     {
         if ($this->users->removeElement($user)) {
-            $user->removeWatchlist($this);
+            $user->removeFromWatchlist($this);
         }
 
         return $this;
+    }
+
+    public function setPosterFile(?File $image = null)
+    {
+        $this->posterFile = $image;
+        if (null !== $image) {
+            $this->updatedAt = new DateTime('now');
+        }
+    }
+
+    public function getPosterFile(): ?File
+    {
+        return $this->posterFile;
+    }
+
+    public function getUpdatedAt(): ?DateTimeInterface
+    {
+        return $this->updatedAt;
     }
 }

@@ -3,12 +3,20 @@
 namespace App\Entity;
 
 use App\Repository\ActorRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+use DateTimeInterface;
+use DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ActorRepository::class)
+ * @Vich\Uploadable
  */
 class Actor
 {
@@ -25,6 +33,16 @@ class Actor
     private $name;
 
     /**
+     * @Vich\UploadableField(mapping="actor_file", fileNameProperty="image")
+     * @var File
+     * @Assert\File(
+     * maxSize = "1M",
+     * mimeTypes = {"image/jpeg", "image/png", "image/jpg"},
+     * )
+     */
+    private $imageFile;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
@@ -34,9 +52,16 @@ class Actor
      */
     private $programs;
 
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTimeInterface|null
+     */
+    private ?DateTimeInterface $updatedAt;
+
     public function __construct()
     {
         $this->programs = new ArrayCollection();
+        $this->updatedAt = new DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -95,5 +120,23 @@ class Actor
     public function getSelector(): string
     {
         return $this->getId() . ' - ' . $this->getName();
+    }
+
+    public function setImageFile(?File $image = null)
+    {
+        $this->imageFile = $image;
+        if (null !== $image) {
+            $this->updatedAt = new DateTime('now');
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function getUpdatedAt(): ?DateTimeInterface
+    {
+        return $this->updatedAt;
     }
 }

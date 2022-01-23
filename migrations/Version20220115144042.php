@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20211219192905 extends AbstractMigration
+final class Version20220115144042 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,14 +20,12 @@ final class Version20211219192905 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE program ADD owner_id INT DEFAULT NULL');
-        // $this->addSql('CREATE INDEX IDX_92ED77847E3C61F9 ON program (owner_id)');
+        $this->addSql('ALTER TABLE program ADD updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        // $this->addSql('DROP INDEX IDX_92ED77847E3C61F9 ON program');
-        $this->addSql('ALTER TABLE program DROP owner_id');
+        $this->addSql('ALTER TABLE program DROP updated_at');
     }
 }

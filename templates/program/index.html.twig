@@ -17,7 +17,7 @@
 					{% for program in programs %}
 						<div class="row g-0 p-4">
 							<div class="col-md-4">
-								<img src="{{ program.poster }}" class="image img-fluid rounded-start mt-5" alt="{{ program.title }}">
+								<img src="{{ vich_uploader_asset(program) }}" class="image img-fluid rounded-start mt-5" alt="{{ program.title }}">
 							</div>
 							<div class="col-md-8 align-self-center">
 								<div class="card-body">
@@ -26,10 +26,10 @@
 								</div>
 								<p>{{ program.summary }}</p>
 								<a class="btn text-light" href="{{ path("program_show", { slug:program.slug }) }}">Voir la fiche</a>
-								<a href="{{ path('program_delete', { slug: program.slug} ) }}">Supprimer</a>
+								<a class="btn btn-outline-primary text-dark text-decoration-none" href="{{ path('program_delete', { slug: program.slug} ) }}">Supprimer</a>
 							</div>
 						</div>
-							<a href="{{ path('program_edit', { slug: program.slug} ) }}">Éditer</a>
+							<a class="btn btn-outline-primary text-dark ms-4 text-decoration-none" href="{{ path('program_edit', { slug: program.slug} ) }}">Éditer</a>
 						{% else %}Aucune série trouvée.
 					{% endfor %}
 		</div>

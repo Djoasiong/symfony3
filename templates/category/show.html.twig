@@ -6,12 +6,18 @@
 <main class="container">
         {% for program in programs %}
             <div>
-            <img class=" image align-self-start mr-3 mb-5 mt-5" src="{{ program.poster }}" alt="{{ program.title }} poster">
+            <img class=" image align-self-start mr-3 mb-5 mt-5" src="{{ vich_uploader_asset(program)  }}" alt="{{ program.title }} poster">
                 <p>{{ program.title }}</p>
                 <p>{{ program.id }}</p>
                 <p>{{ program.summary }}</p>
             </div>
-            <a href="{{ path("program_show", { slug: program.slug }) }}">Voir la fiche</a>
+            <a class="text-light text-decoration-none" href="{{ path("program_show", { slug: program.slug }) }}">Voir la fiche</a>
     {% endfor %}
+    <div class="mt-5">
+            <a class=" text-light text-decoration-none" href="{{ path('category_index') }}"><svg xmlns="http://www.w3.org/2000/svg" style="color: #fafafa
+                                    ;" width="16" height="16" fill="currentColor" class="bi bi-chevron-left mb-1" viewbox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                </svg>Retour</a>
+            </div>
     </main>
 {% endblock %}
