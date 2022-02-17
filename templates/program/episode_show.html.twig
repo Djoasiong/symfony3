@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Episode
+{% block title %}{{ 'episode'|trans }}
 	{{ episode.number }}
 {% endblock %}
 
@@ -22,7 +22,7 @@
 	{% endif %}
 
 	{% if is_granted("ROLE_ADMIN") %}
-		<a href="{{ path('program_edit', { 'slug': program.slug} ) }}">Éditer</a>
+		<a href="{{ path('program_edit', { 'slug': program.slug} ) }}">{{ 'edit'|trans }}</a>
 	{%endif%}
 
 		{% for comment in episode.comments %}
@@ -40,5 +40,5 @@
 			</div>
 		{% endfor %}
 
-		<a href="{{ path('app_index') }}">Retour à l'accueil</a>
+		<a href="{{ path('app_index') }}">{{ 'back home'|trans }}</a>
 	{% endblock %}

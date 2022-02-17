@@ -1,0 +1,44 @@
+editComment: Éditer un commentaire
+edit: Éditer
+back: Retour
+deleteItem: Êtes-vous sûr de bien vouloir supprimer cet élément ?
+delete: Supprimer
+comment: Commentaire
+Comment: __Comment
+backList: Retour à la liste
+commentIndex: Index des commentaires
+add: Ajouter
+category: Categorie
+seeNotice: Voir la fiche
+allCategories: Toutes les catégories
+noCategory: Pas de Catégorie trouvée
+add_newCategory: Ajouter une nouvelle catégorie
+addCategory: Ajouter une catégorie
+episodeIndex: Index des épisodes
+newEpisode: Nouvel épisode
+backEpisode: Retour à la liste d''épisodes
+serie: Série
+noSeason: Pas de Saison trouvé
+actors: Acteurs
+noActor: Aucun acteur trouvé
+newProgram: Nouveau programme
+allPrograms: Tous les programmes
+addProgram: Ajouter un programme
+noProgram: Aucun programme trouvé
+backPrograms: Retour aux programmes
+episode: Épisode
+back home: Retour à l'accueil
+season: Saison
+more: En savoir plus
+language: Langue
+program: Programme
+hello_username: Bonjour %username%
+account.logout: Se déconnecter
+account.sign_in: Se connecter
+series_of: Les séries de
+allActors: Tous les acteurs
+newActor: Nouvel acteur
+backActors: Retour aux acteurs
+editSeason: Éditer une Saison
+seasons: Saisons
+addSeason: Ajouter une saison

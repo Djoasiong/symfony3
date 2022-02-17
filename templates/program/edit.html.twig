@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Season
+{% block title %}{{ 'editSeason'|trans }}
 {% endblock %}
 
 {% block body %}
 <main class="container">
 	<h1 class="text-center text-dark mt-5 mb-5">Éditer un programme</h1>
-            {{ include('program/_form.html.twig', {'button_label': 'Éditer'}) }}
+            {{ include('program/_form.html.twig', {'button_label': {{ 'edit'|trans }}}) }}
         <div class="mt-5">
             <a class="btn text-light" href="{{ path('program_index') }}"><svg xmlns="http://www.w3.org/2000/svg" style="color: #fafafa
                                         ;" width="16" height="16" fill="currentColor" class="bi bi-chevron-left mb-1" viewbox="0 0 16 16">
                         <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-                    </svg>Retour</a> 
+                    </svg>{{ 'back'|trans }}</a> 
         </div> 
 </main> 
 {% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Episode index{% endblock %}
+{% block title %}{{ 'episodeIndex'|trans }}{% endblock %}
 
 {% block body %}
     <h1 class="d-flex justify-content-center mt-5">Episode index</h1>
@@ -24,7 +24,7 @@
                 <td>{{ episode.synopsis }}</td>
                 <td>
                     <a href="{{ path('episode_show', {'slug': episode.slug}) }}">show</a>
-                    <a href="{{ path('episode_edit', {'slug': episode.slug}) }}">edit</a>
+                    <a href="{{ path('episode_edit', {'slug': episode.slug}) }}">{{ 'edit'|trans }}</a>
                 </td>
             </tr>
         {% else %}
@@ -36,5 +36,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('episode_new') }}">Create new</a>
+    <a href="{{ path('episode_new') }}">{{ 'add'|trans }}</a>
 {% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Série #{{ program.id }}
+{% block title %}{{ 'serie'|trans }} #{{ program.id }}
 {% endblock %}
 
 {% block body %}
@@ -33,16 +33,16 @@
 						<a class="btn text-light" href="{{ path('program_season_show',{ programId: season.program.id, seasonId: season.id }) }}">Voir la fiche</a>
 					</div>
 					{% else %}
-					Pas de saison disponible
+					{{ 'noSeason'|trans }}
 				{% endfor %}
 			</div>
 		</div>
-		<strong>Acteurs :</strong>
+		<strong>{{ 'actors'|trans }} :</strong>
 		<ul>
 			{% for actor in program.actors %}
 				<h3 href="{{ path('actor_show', { id: actor.id }) }}">{{ loop.index }} - {{ actor.name }}</h3>
 			{% else %}
-				<li>Aucun acteur pour cette série</li>
+				<li>{{ 'noActor'|trans }}</li>
 			{% endfor %}
 		</ul>
 		<a class="btn text-light mb-5" href="{{ path('program_index') }}">< Retour à la liste des programmes</a>

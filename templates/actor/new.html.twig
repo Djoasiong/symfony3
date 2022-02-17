@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Actor
+{% block title %}{{ 'newActor'|trans }}
 {% endblock %}
 
 {% block body %}
 	<main class="container">
 		<h1 class="d-flex justify-content-center mb-5 bg-secondary">Ajouter un nouvel acteur</h1>
 		{{ include('actor/_form.html.twig') }}
-		<a class="btn text-light mb-5 mt-5" href="{{ path('actor_index') }}">< Retour aux acteurs</a>
+		<a class="btn text-light mb-5 mt-5" href="{{ path('actor_index') }}">< {{ 'backActors'|trans }}</a>
 	</main>
 {% endblock %}

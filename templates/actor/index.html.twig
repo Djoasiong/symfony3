@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}All actors
+{% block title %}{{ 'allActors'|trans }}
 {% endblock %}
 
 {% block body %}
 	<main class="container mb-3">
-		<h1 class="d-flex justify-content-center mt-3 mb-5">Tous les acteurs</h1>
+		<h1 class="d-flex justify-content-center mt-3 mb-5">{{ 'allActors'|trans }}</h1>
 		{% for actor in actors %}
 			<div class="row">
 				<div class="col-md-4">
@@ -16,13 +16,13 @@
 						<h2>{{ actor.name }}</h2>
 						<div>
 							<a class="text-light" href="{{ path("actor_show", { id: actor.id }) }}">{{ actor.name }}</a>
-							<a class="btn btn-outline-primary text-dark text-decoration-none ms-5" href="{{ path('actor_delete', { id: actor.id} ) }}">Supprimer</a>
+							<a class="btn btn-outline-primary text-dark text-decoration-none ms-5" href="{{ path('actor_delete', { id: actor.id} ) }}">{{ 'delete'|trans }}</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			<a class="btn btn-outline-primary text-dark mt-3 text-decoration-none" href="{{ path('actor_edit', { id: actor.id} ) }}">Éditer</a>
-			{% else %}Aucun acteur trouvé.
+			<a class="btn btn-outline-primary text-dark mt-3 text-decoration-none" href="{{ path('actor_edit', { id: actor.id} ) }}">{{ 'edit'|trans }}</a>
+			{% else %}{{ 'noActor'|trans }}
 		{% endfor %}
 	</main>
 {% endblock %}

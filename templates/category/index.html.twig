@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}All categories{% endblock %}
+{% block title %}{{ 'allCategories'|trans }}{% endblock %}
 
 {% block body %}
 <main class="container mb-5">
 <div>
-	<h1 class="d-flex justify-content-center mt-5 mb-5">Toutes les catégories </h1>
+	<h1 class="d-flex justify-content-center mt-5 mb-5">{{ 'allCategories'|trans }}</h1>
 	<a class="btn btn-secondary d-flex justify-content-center mb-5"href="{{ path('category_new') }}">Ajouter une catégorie</a>
 	{% for category in categories %}
 		<div>
 			<h2 class="mb-5">{{ loop.index }} / <a href= "{{ path("category_show", { categoryName:category.name  }) }}">{{ category.name }}</a></h2>
 		</div>
-		{% else %}Aucune catégorie trouvée.
+		{% else %}{{ 'noCategory'|trans }}
 	{% endfor %}
 	</div>
 	</main>

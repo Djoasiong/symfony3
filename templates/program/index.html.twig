@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}All programs
+{% block title %}{{ 'allPrograms'|trans }}
 {% endblock %}
 
 {% block body %}
 	<main class="container mt-5">
 		<div class=" mb-3">
-			<h1 class=" series mb-3 d-flex justify-content-center">Toutes les séries</h1>
+			<h1 class=" series mb-3 d-flex justify-content-center">{{ 'allPrograms'|trans }}</h1>
 				<div class="mb-5">
 					{{ form_start(form) }}
 					{{ form_widget(form) }}
 					<button class="mt-3">Search</button>
 					{{ form_end(form) }}
 				</div>
-				<a class="btn btn-secondary d-flex justify-content-center" href="{{ path('program_new') }}">Ajouter un programme</a>
+				<a class="btn btn-secondary d-flex justify-content-center" href="{{ path('program_new') }}">{{ 'addProgram'|trans }}</a>
 					{% for program in programs %}
 						<div class="row g-0 p-4">
 							<div class="col-md-4">
@@ -25,12 +25,12 @@
 									<p class="d-flex justify-content-center">Catégorie : {{ program.category.name }}</p>
 								</div>
 								<p>{{ program.summary }}</p>
-								<a class="btn text-light" href="{{ path("program_show", { slug:program.slug }) }}">Voir la fiche</a>
-								<a class="btn btn-outline-primary text-dark text-decoration-none" href="{{ path('program_delete', { slug: program.slug} ) }}">Supprimer</a>
+								<a class="btn text-light" href="{{ path("program_show", { slug:program.slug }) }}">{{ 'seeNotice'|trans }}</a>
+								<a class="btn btn-outline-primary text-dark text-decoration-none" href="{{ path('program_delete', { slug: program.slug} ) }}">{{ 'delete'|trans }}</a>
 							</div>
 						</div>
-							<a class="btn btn-outline-primary text-dark ms-4 text-decoration-none" href="{{ path('program_edit', { slug: program.slug} ) }}">Éditer</a>
-						{% else %}Aucune série trouvée.
+							<a class="btn btn-outline-primary text-dark ms-4 text-decoration-none" href="{{ path('program_edit', { slug: program.slug} ) }}">{{ 'edit'|trans }}</a>
+						{% else %}{{ 'noProgram'|trans }}
 					{% endfor %}
 		</div>
 	</main>
