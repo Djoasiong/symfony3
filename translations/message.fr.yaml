@@ -1,0 +1,58 @@
+account.register: 'Créer un compte'
+account.sign_in: 'Se connecter'
+account.logout: Déconnexion
+actors: Acteurs
+add: Ajouter
+allCategories: 'Toutes les catégories'
+allPrograms: 'Tous les programmes'
+allActors: 'Tous les acteurs'
+addCategory: 'Ajouter une catégorie'
+add_newCategory: 'Ajouter une nouvelle catégorie'
+addProgram: 'Ajouter un programme'
+addComment: 'Ajouter un commentaire'
+addEpisode: 'Ajouter un épisode'
+addSeason: 'Ajouter une saison'
+back: Retour
+back home: Retour à l'accueil
+backPrograms: 'Retour aux programmes'
+backComments: 'Retour aux commentaires'
+backActors: 'Retour aux acteurs'
+backEpisode: 'Retour à la liste d''épisodes'
+backList: 'Retour à la liste'
+category: Catégorie
+comment: Commentaire
+commentIndex: 'Index des commentaires'
+details: Détails
+delete: Supprimer
+deleteItem: 'Êtes-vous sûr de bien vouloir supprimer cet élément ?'
+episode: Épisode
+episodeIndex: 'Index des épisodes'
+edit: Éditer
+editSeason: 'Éditer une Saison'
+editEpisode: 'Modifier un épisode'
+editActor: 'Éditer un acteur'
+editComment: 'Éditer un commentaire'
+home: Accueil
+hello_username: 'Bonjour %username%'
+language: Langue
+more: 'En savoir plus'
+newCategory: 'Nouvelle Catégorie'
+newProgram: 'Nouveau programme'
+newSeason: 'Nouvelle Saison'
+newActor: 'Nouvel acteur'
+newEpisode: 'Nouvel épisode'
+newComment: 'Nouveau commentaire'
+noActor: 'Aucun acteur trouvé'
+noSeason: 'Pas de Saison trouvé'
+noProgram: 'Aucun programme trouvé'
+noEpisode: 'Aucun épisode trouvé'
+noCategory: 'Pas de Catégorie trouvée'
+program: Programme
+password: 'Mot de Passe'
+rate: Note
+serie: série
+season: 'La saison'
+seasons: 'Les saisons'
+seeNotice: 'Voir la fiche'
+series_of: 'Les séries de'
+welcome: Bienvenue

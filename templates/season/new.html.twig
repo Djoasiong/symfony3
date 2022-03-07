@@ -4,11 +4,11 @@
 {% block title %}New Season{% endblock %}
 
 {% block body %}
-    <h1 class="d-flex justify-content-center mt-5 mb-5">Create new Season</h1>
+    <h1 class="d-flex justify-content-center mt-5 mb-5">{{ 'addSeason'|ttrans }}</h1>
     <main class="container">
 
     {{ include('season/_form.html.twig') }}
 
-    <a class="btn text-light" href="{{ path('season_index') }}">< back to list</a>
+    <a class="btn text-light" href="{{ path('season_index') }}">< {{ 'backList'|trans }}</a>
     </main>
 {% endblock %}

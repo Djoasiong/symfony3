@@ -3,9 +3,9 @@
 {% block title %}Season index{% endblock %}
 
 {% block body %}
-    <h1 class="index d-flex justify-content-center mt-5 mb-5 bg-secondary">Les saisons</h1>
+    <h1 class="index d-flex justify-content-center mt-5 mb-5 bg-secondary">{{ 'seasons'|trans }}</h1>
     <main class="container">
-<a class="btn btn-primary" href="{{ path('season_new') }}">Ajouter une saison</a>
+<a class="btn btn-primary" href="{{ path('season_new') }}">{{ 'addSeason'|trans }}</a>
     <table class="table">
         <thead>
             <tr>
@@ -25,7 +25,7 @@
                 <td>{{ season.description }}</td>
                 <td>
                     <a class="btn show btn-secondary" href="{{ path('season_show', {'id': season.id}) }}">show</a>
-                    <a class="btn edit btn-primary mt-2" href="{{ path('season_edit', {'id': season.id}) }}">edit</a>
+                    <a class="btn edit btn-primary mt-2" href="{{ path('season_edit', {'id': season.id}) }}">{{ 'edit'|trans }}</a>
                 </td>
             </tr>
         {% else %}

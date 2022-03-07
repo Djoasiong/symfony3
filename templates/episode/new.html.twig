@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
 
-{% block title %}New Episode{% endblock %}
+{% block title %}{{ 'newEpisode'|trans }}{% endblock %}
 
 {% block body %}
 <main class="container">
     <h1>Create new Episode</h1>
     {{ include('episode/_form.html.twig') }}
-    <a href="{{ path('episode_index') }}">Retour à la liste d'épisodes</a>
+    <a href="{{ path('episode_index') }}">{{ 'backEpisode'|trans }}</a>
     </main>
 {% endblock %}

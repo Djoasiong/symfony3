@@ -1,38 +1,48 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-primary">
 	<div class="container-fluid">
-		<img src="{{ asset('build/images/favicon.png') }}" alt="projector logo"/>
-		<li class="wild-series fs-3">
+		<img class="logo" src="{{ asset('build/images/favicon.png') }}" alt="projector logo"/>
 			<div class="nav fw-bold ms-3">Wild Series</div>
-		</li>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item dropdown">
+				 <a class="nav-link dropdown-toggle ms-5" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ 'language'|trans }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/fr">Français</a></li>
+                        <li><a class="dropdown-item" href="/en">English</a></li>
+                    </ul>
+                </li>
 				<li class="nav-item">
 					<a class="nav nav-link active ms-5" aria-current="page" href="/">Accueil</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav nav-link active ms-5" href="/program">Programme</a>
+					<a class="nav nav-link active ms-5" href="/program">{{ 'program'|trans }}</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav nav-link active ms-5" href="/category">Catégorie</a>
+					<a class="nav nav-link active ms-5" href="/category">{{ 'category'|trans }}</a>
 				</li>
 				<div>
 					<li class="nav-item">
-						<a class="nav nav-link active ms-5" href="/actor">Acteurs</a>
+						<a class="nav nav-link active ms-5" href="/actor">{{'actors'|trans }}</a>
 					</li>
 				</div>
 			</ul>
 		</div>
 		<div>
 			{% if app.user %}
-				{{ app.user.email }}
+				{% trans with {'%username%': app.user.email} %}
+       				hello_username
+   				{% endtrans %} !
 				<a  class="text-dark" href="{{ path('profile') }}"> Mon compte /</a>
-				<a class="text-dark" href="{{ path('app_logout') }}">Se déconnecter</a>
+				<a class="text-dark" href="{{ path('app_logout') }}">{{ 'account.logout'|trans }}</a>
 			{% else %}
-				<a class="text-dark text-decoration-none" href="{{ path('login') }}">Se connecter /</a>
-					<a class="text-dark text-decoration-none" href="{{ path('app_register') }}">  S'inscrire </a>
+				<a class="login text-dark text-decoration-none" href="{{ path('login') }}">{{ 'account.sign_in'|trans }} /</a>
+					<a class="register text-dark text-decoration-none" href="{{ path('app_register') }}">  S'inscrire </a>
 			{% endif %}
 		</div>
 	</div>

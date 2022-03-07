@@ -1,15 +1,15 @@
 {% extends "base.html.twig" %}
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
 
-{% block title %}New Program{% endblock %}
+{% block title %}{{ 'newProgram'|trans }}{% endblock %}
 
 {% block body %}
 	<main class="container">
-	<h1 class="d-flex justify-content-center mb-5 bg-secondary">Ajouter un nouveau programme</h1>
+	<h1 class="d-flex justify-content-center mb-5 bg-secondary">{{ 'addProgram'|trans }}</h1>
 		{{ form_start(form) }}
 		{{ form_widget(form) }}
-		<button type="submit">Ajouter</button>
+		<button type="submit">{{ 'add'|trans }}</button>
 		{{ form_end(form) }}
-        <a class="btn text-light mb-5 mt-5" href="{{ path('program_index') }}">< Retour aux programmes</a>
+        <a class="btn text-light mb-5 mt-5" href="{{ path('program_index') }}">< {{ 'backPrograms'|trans }}</a>
 	</main>
 {% endblock %}
