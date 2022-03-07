@@ -12,8 +12,6 @@ import './styles/app.scss';
 import './bootstrap';
 console.log('Hello Webpack Encore !');
 
-// app.js
-
 const $ = require('jquery');
 // this "modifies" the jquery module: adding behavior to it
 // the bootstrap module doesn't export/return anything
